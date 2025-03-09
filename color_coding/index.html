@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>周期表の色分け</title>
+</head>
+<style>
+    body {
+        background-color: #e1e3e759;
+    }
+
+    h1 {
+        /* border-bottom: 5px solid rgb(40, 58, 92); */
+        border-left: 7px solid rgb(40, 58, 92);
+    }
+
+    li {
+        /* リストの間隔を広げる */
+        margin: 10px 0;
+    }
+
+    a {
+        /* 文字色を変更（青色に設定） */
+        color: #3a190e;
+        /* アンダーバーを削除 */
+        text-decoration: none;
+        /* 行間を広げる */
+        line-height: 1.8;
+        font-size: 18px;
+    }
+
+    a:hover {
+        /* ホバー時に文字色を変更（赤色） */
+        color: #2d228f;
+    }
+
+    #return {
+        padding-left: 8px;
+        padding-right: 8px;
+        border-radius: 2px;
+        background: white;
+        height: 35px;
+        width: 60px;
+        font-size: 15px;
+    }
+
+    #return:hover {
+        color: #fff;
+        background: rgb(1, 24, 82);
+    }
+</style>
+
+<body>
+    <main>
+        <h1>ページを選択してください</h1>
+        <ul id="pageList">
+            <li><a href="quiz_1/index.html">典型元素と遷移元素</a></li>
+            <li><a href="quiz_2/index.html">金属元素と非金属元素</a></li>
+            <li><a href="quiz_3/index.html">アルカリ金属元素、アルカリ土類金属元素とハロゲン、貴ガス</a></li>
+        </ul>
+        <button id="return" onclick="goBack()">戻る</button>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

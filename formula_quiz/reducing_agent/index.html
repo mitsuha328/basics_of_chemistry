@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>頻出化合物の化学式</title>
+</head>
+<style>
+    body {
+        background-color: #e1e3e759;
+    }
+
+    h1 {
+        border-bottom: 5px solid rgb(40, 58, 92);
+    }
+
+    h2 {
+        border-left: 7px solid rgba(176, 197, 236, 0.808);
+    }
+
+    .parent {
+        height: 250px;
+        background-color: rgb(198, 212, 240);
+        overflow-x: scroll;
+    }
+
+    .child {
+        display: flex;
+    }
+
+
+    .word_card {
+        margin: 0px
+    }
+
+
+    .btn {
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1.5;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+        text-align: center;
+        vertical-align: middle;
+        text-decoration: none;
+        letter-spacing: 0.1em;
+        color: #212529;
+        border-radius: 0.5rem;
+        border: 8px double #0090bb;
+        height: 120px;
+        width: 200px;
+        white-space: nowrap;
+        overflow-x: scroll;
+    }
+
+    #card {
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1.5;
+        position: relative;
+        display: inline-block;
+        /*padding: 1rem 4rem;*/
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+        text-align: center;
+        vertical-align: middle;
+        text-decoration: none;
+        letter-spacing: 0.1em;
+        color: #212529;
+        border-radius: 0.5rem;
+        border: 8px double #011274;
+        height: 120px;
+        width: 200px;
+        white-space: nowrap;
+        overflow-x: scroll;
+    }
+
+    #quiz-text {
+        text-align: center;
+        display: none;
+    }
+
+    #quiz-container {
+        text-align: center;
+        display: none;
+    }
+
+    .container {
+        display: flex;
+        gap: 10px;
+    }
+
+
+    .button-container {
+        display: flex;
+        gap: 3px;
+    }
+
+    .shuffle-button {
+        height: 35px;
+        width: 130px;
+        font-size: 15px;
+        border: 1px solid rgb(1, 24, 82);
+        border-radius: 2px;
+        background: #fff;
+    }
+
+    .shuffle-button:hover {
+        color: #fff;
+        background: rgb(1, 24, 82);
+    }
+
+    .white-button {
+        height: 35px;
+        width: 230px;
+        font-size: 15px;
+        border: 1px solid rgb(1, 24, 82);
+        border-radius: 2px;
+        background: #fff;
+    }
+
+    .white-button:hover {
+        color: #fff;
+        background: rgb(1, 24, 82);
+    }
+
+    .first-class {
+        display: flex;
+        gap: 5px;
+    }
+
+    .cardchange-button {
+        height: 35px;
+        font-size: 15px;
+        border: 1px solid rgb(1, 24, 82);
+        border-radius: 2px;
+        background: #fff;
+    }
+
+    .cardchange-button:hover {
+        color: #fff;
+        background: rgb(1, 24, 82);
+    }
+
+
+    .image {
+        border: 2px solid rgb(1, 24, 82);
+        border-radius: 0.25em;
+        padding: 0.5em;
+        background-color: rgb(251, 252, 253);
+        width: 250px;
+        height: 25px;
+        font-size: 1em;
+        line-height: 1.2;
+    }
+
+    .response {
+        border: 2px solid rgb(1, 24, 82);
+        border-radius: 0.25em;
+        padding: 0.5em;
+        background-color: rgb(251, 252, 253);
+        width: 600px;
+        height: 25px;
+        font-size: 1em;
+        line-height: 1.2;
+    }
+
+    .font {
+        font-size: 20px;
+    }
+
+    .flame {
+        height: 50px;
+        width: 950px;
+        display: flex;
+        background-color: rgb(248, 224, 246, 0.808);
+        border-left: 7px solid rgb(252, 193, 252);
+    }
+
+    .prc_word {
+        white-space: nowrap;
+        height: 40px;
+        width: 600px;
+        font-size: 1.6rem;
+        margin-left: 5px;
+        background-color: rgb(215, 236, 253);
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        overflow-x: scroll;
+        scrollbar-width: thin;
+    }
+
+    .flame-card {
+        font-size: 20px;
+        margin-left: 5px;
+    }
+
+
+    input.check {
+        border: 2px solid #0b147b;
+        border-radius: 0;
+        background: #fff;
+        border-radius: 5px;
+        height: 40px;
+        width: 55px;
+        font-size: 1.0rem;
+        margin-top: 5px;
+    }
+
+    input.check:hover {
+        color: #fff;
+        background: #0b147b;
+    }
+
+
+    button.start-btn {
+        height: 40px;
+        width: 120px;
+        color: #fff;
+        border: 2px solid #fff;
+        border-radius: 0;
+        background-image: -webkit-gradient(linear, left top, right top, from(#7463f8), to(#86c0fd));
+        background-image: -webkit-linear-gradient(left, #7463f8 0%, #86c0fd 100%);
+        background-image: linear-gradient(to right, #7463f8 0%, #86c0fd 100%);
+        -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+    }
+
+    button.start-btn:hover {
+        -webkit-transform: translate(0, -2px);
+        transform: translate(0, -2px);
+        color: #fff;
+        -webkit-box-shadow: 0 8px 15px rgba(0, 0, 0, .2);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, .2);
+    }
+
+    .button {
+        height: 35px;
+        font-size: 15px;
+        padding-left: 8px;
+        padding-right: 8px;
+        border: 1px solid rgb(1, 24, 82);
+        border-radius: 2px;
+        background: #fff;
+    }
+
+    .button:hover {
+        color: #fff;
+        background: rgb(1, 24, 82);
+    }
+
+    .changequiz {
+        display: flex;
+        gap: 5px;
+    }
+
+    .changebtnA_B {
+        height: 35px;
+        width: 170px;
+        font-size: 15px;
+        padding-left: 8px;
+        padding-right: 8px;
+        border: 1px solid rgb(1, 24, 82);
+        border-radius: 2px;
+        background: #fff;
+    }
+
+    .changebtnA_B:hover {
+        color: #fff;
+        background: rgb(1, 24, 82);
+    }
+
+    .changebtnB_A {
+        height: 35px;
+        width: 170px;
+        font-size: 15px;
+        padding-left: 8px;
+        padding-right: 8px;
+        border: 1px solid rgb(1, 24, 82);
+        border-radius: 2px;
+        background: #fff;
+    }
+
+    .changebtnB_A:hover {
+        color: #fff;
+        background: rgb(1, 24, 82);
+    }
+
+    #return {
+        margin-top: 10px;
+        padding-left: 8px;
+        padding-right: 8px;
+        border-radius: 2px;
+        background: white;
+        height: 35px;
+        width: 60px;
+        font-size: 15px;
+    }
+
+    #return:hover {
+        color: #fff;
+        background: rgb(1, 24, 82);
+    }
+</style>
+
+<body>
+    <main>
+        <h1>還元剤</h1>
+
+
+        <h2>クイズ</h2>
+        <div id="quiz-container"></div>
+        <div class="font" id="question"></div>
+        <div id="start"></div>
+        <div id="changetext"></div>
+        <div class="changequiz">
+            <div id="changeA_B"></div>
+            <div id="changeB_A"></div>
+        </div>
+        <input class="response" type="text" id="answer-input" placeholder="ここに答えを入力">
+        <div id="reply"></div>
+        <div id="comment"></div>
+        <div class="button-container">
+            <div type="submit" id="submit-btn"></div>
+            <div id="next"></div>
+            <div id="end-btn"></div>
+        </div>
+        <div id="end"></div>
+        <div id="finish-btn"></div>
+
+
+        <h2>覚えたい物質</h2>
+        <div class="parent">
+            <div class="child" id="memo_1"></div>
+            <div class="child" id="memo_2"></div>
+        </div>
+        <div class="container">
+            <div class="button-container">
+                <div id="shuffle-btn"></div>
+                <div id="reset-btn"></div>
+            </div>
+            <div class="button-container">
+                <div id="white-btn"></div>
+                <div id="block-btn"></div>
+            </div>
+            <div id="cardchange-btn"></div>
+        </div>
+
+        <h2>練習ノート</h2>
+        <div id="container"></div>
+        <div id="text"></div>
+        <template id="flame-template">
+            <div class="flame">
+                <div class="prc_word"></div>
+                <form class="flame-card" onsubmit="showCard(); return false;">
+                    <input class="image" type="text" placeholder="apple">
+                    <input class="check" type="submit" value="確認">
+                </form>
+            </div>
+        </template>
+    </main>
+    <button id="return" onclick="goBack()">戻る</button>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

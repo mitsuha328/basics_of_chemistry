@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>周期表の色分け</title>
+</head>
+<style>
+    body {
+        background-color: #e1e3e759;
+    }
+
+    h1 {
+        border-bottom: 5px solid rgb(40, 58, 92);
+        /* width: 400px; */
+    }
+
+    h2 {
+        border-left: 7px solid rgba(176, 197, 236, 0.808);
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(19, 50px);
+        gap: 3px;
+    }
+
+    .button {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        overflow: hidden;
+        white-space: normal;
+        word-break: break-word;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        color: #212529;
+    }
+
+    .disabled {
+        background-color: rgb(168, 168, 168) !important;
+        pointer-events: none;
+    }
+
+    .highlight {
+        color: rgb(209, 25, 62);
+        font-weight: bold;
+    }
+
+    .color-button {
+        display: flex;
+        gap: 5px;
+        margin-top: 10px;
+    }
+
+    .color1 {
+        background: rgb(149, 209, 228);
+        height: 35px;
+        width: 230px;
+        font-size: 15px;
+    }
+
+    .color2 {
+        background: #d8edd8;
+        height: 35px;
+        width: 230px;
+        font-size: 15px;
+    }
+
+    .color3 {
+        background: #ebd4d4;
+        height: 35px;
+        width: 230px;
+        font-size: 15px;
+    }
+
+    .color4 {
+        background: #fbfbf0;
+        height: 35px;
+        width: 230px;
+        font-size: 15px;
+    }
+
+
+    #result {
+        margin-top: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #591d1d;
+        margin-bottom: 20px;
+    }
+
+    #return {
+        padding-left: 8px;
+        padding-right: 8px;
+        border-radius: 2px;
+        background: white;
+        height: 35px;
+        width: 60px;
+        font-size: 15px;
+    }
+
+    #return:hover {
+        color: #fff;
+        background: rgb(1, 24, 82);
+    }
+</style>
+
+<body>
+    <main>
+        <h1>アルカリ金属元素、アルカリ土類金属元素、ハロゲン、貴ガスに分けよう</h1>
+        <h2>それぞれの元素をクリックして色を塗ろう!</h2>
+        <div class="grid" id="buttonGrid"></div>
+        <div class="color-button">
+            <div id="color1"></div>
+            <div id="color2"></div>
+            <div id="color3"></div>
+            <div id="color4"></div>
+        </div>
+        <div id="result"></div>
+        <button id="return" onclick="goBack()">戻る</button>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
